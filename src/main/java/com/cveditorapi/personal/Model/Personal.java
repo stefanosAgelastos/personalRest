@@ -1,9 +1,26 @@
 package com.cveditorapi.personal.Model;
 
+import org.springframework.boot.autoconfigure.web.ResourceProperties;
+import org.springframework.context.annotation.Primary;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Personal {
+
+    @Id
+    @GeneratedValue
     private int id;
+    @Column
     private String label;
+    @Column
     private String value;
+
+    public Personal() {
+    }
 
     public Personal(int id, String label, String value) {
         this.id = id;
