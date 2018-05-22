@@ -1,6 +1,8 @@
+/*
 package com.cveditorapi.personal.Services;
 
 
+import com.cveditorapi.personal.Model.Detail;
 import com.cveditorapi.personal.Model.Personal;
 import org.springframework.stereotype.Service;
 
@@ -9,15 +11,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+//todo: needs to be adapted with the current inheritance tree.
 
 @Service("InMemory")
-public class PersonalInMemoryService implements PersonalService {
+public class PersonalInMemoryService implements DetailService {
 
     private ArrayList<Personal> allPersonals = new ArrayList(Arrays.asList(new Personal(1, "name", "Stefanos")
             , new Personal(2, "gender", "fluid")
             , new Personal(3, "dob", "06/07/1987")));
 
-    public List<Personal> getAll() {
+    public List<Detail> getAll() {
         return this.allPersonals;
     }
 
@@ -37,8 +40,12 @@ public class PersonalInMemoryService implements PersonalService {
             System.out.println("Responding with: " + toUpdate);
             return toUpdate;
         } else {
-            System.out.println("Responding with NULL");
-            return null;
+            this.allPersonals.trimToSize();
+            int newId = this.allPersonals.size()+1;
+            toUpdate.setId(newId);
+            this.allPersonals.add( toUpdate);
+            System.out.println("Added new Personal with id: " +toUpdate.getId());
+            return toUpdate;
         }
     }
 
@@ -51,8 +58,9 @@ public class PersonalInMemoryService implements PersonalService {
         }
     }
 
-    public void delete(Personal toDelete) {
-        this.allPersonals.remove(toDelete);
+    public void delete(int toDelete) {
+        this.allPersonals.remove(toDelete-1);
     }
 
 }
+*/
