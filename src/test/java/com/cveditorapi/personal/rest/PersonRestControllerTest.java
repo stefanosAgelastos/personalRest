@@ -1,3 +1,4 @@
+/*
 package com.cveditorapi.personal.rest;
 
 import com.cveditorapi.personal.TokenAuthorization.JwtTokenUtil;
@@ -54,3 +55,4 @@ public class PersonRestControllerTest {
 
 }
 
+*/

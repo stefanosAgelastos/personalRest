@@ -1,3 +1,4 @@
+/*
 package com.cveditorapi.personal.rest;
 
 import java.util.Arrays;
@@ -88,3 +89,4 @@ public class UserRestControllerTest {
 
 }
 
+*/
