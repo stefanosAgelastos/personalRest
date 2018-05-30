@@ -74,7 +74,7 @@ public class AuthenticationRestControllerTest {
             .andExpect(status().is2xxSuccessful());
     }
 
-    @Test
+   @Test
     @WithMockUser(roles = "USER")
     public void successfulRefreshTokenWithUserRole() throws Exception {
 
@@ -101,6 +101,8 @@ public class AuthenticationRestControllerTest {
             .header("Authorization", "Bearer 5d1103e-b3e1-4ae9-b606-46c9c1bc915a"))
             .andExpect(status().is2xxSuccessful());
     }
+
+
 
     @Test
     @WithMockUser(roles = "ADMIN")
@@ -130,6 +132,8 @@ public class AuthenticationRestControllerTest {
             .andExpect(status().is2xxSuccessful());
     }
 
+
+
     @Test
     @WithAnonymousUser
     public void shouldGetUnauthorizedWithAnonymousUser() throws Exception {
@@ -137,5 +141,5 @@ public class AuthenticationRestControllerTest {
         mvc.perform(get("/refresh"))
             .andExpect(status().isUnauthorized());
     }
-}
 
+}
