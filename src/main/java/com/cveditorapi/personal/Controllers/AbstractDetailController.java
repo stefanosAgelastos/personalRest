@@ -9,6 +9,8 @@ import com.cveditorapi.personal.Services.DetailService;
 import com.cveditorapi.personal.Services.PersonalJPAService;
 import com.cveditorapi.personal.Services.UserJPAService;
 import com.cveditorapi.personal.TokenAuthorization.JwtTokenUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,6 +34,9 @@ public abstract class AbstractDetailController {
     @Qualifier("UserJPAService")
     private UserJPAService userService;
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+
     /*Model related bean*/
     private final
     DetailService service;
@@ -50,10 +55,10 @@ public abstract class AbstractDetailController {
     private Detail typeConvertAndUserAssignment(Detail toConvert){
         toConvert.setUser(getAuthenticatedUser());
         if(this.service instanceof PersonalJPAService){
-            System.out.println("..converting to personal..");
+            logger.info("..converting to personal..");
             return new Personal(toConvert.getId(), toConvert.getLabel(),toConvert.getValue(), getAuthenticatedUser());
         }else if(this.service instanceof ContactJPAService){
-            System.out.println("..converting to contact..");
+            logger.info("..converting to contact..");
             return new Contact(toConvert.getId(), toConvert.getLabel(),toConvert.getValue(), getAuthenticatedUser());
         }else{
             return null;
@@ -66,7 +71,7 @@ public abstract class AbstractDetailController {
     @PreAuthorize("hasRole('USER')")
     public List<Detail> getAll(HttpServletRequest request) {
         this.request = request;
-        System.out.println("getAll method evoked");
+        logger.info("getAll method evoked");
         return this.service.getAll(getAuthenticatedUser());
     }
 
@@ -77,7 +82,7 @@ public abstract class AbstractDetailController {
         /*convert Detail instance to the right domain type*/
         this.request = request;
         toUpdate = typeConvertAndUserAssignment(toUpdate);
-        System.out.println("Received for updating: " + toUpdate.toString());
+        logger.info("Received for updating: " + toUpdate.toString());
         return this.service.update(toUpdate);
     }
 
@@ -88,7 +93,7 @@ public abstract class AbstractDetailController {
         this.request = request;
         /*convert Detail instance to the right domain type*/
         toAdd = typeConvertAndUserAssignment(toAdd);
-        System.out.println("Adding new: "+toAdd);
+        logger.info("Adding new: "+toAdd);
         return this.service.addNew(toAdd);
     }
 
@@ -98,7 +103,7 @@ public abstract class AbstractDetailController {
         this.request = request;
         Detail toDelete = this.service.getOne(id);
         if(toDelete.getUser().equals(this.getAuthenticatedUser())){
-            System.out.println("deleting detail with id "+ id + ". "+ this.getClass().getSimpleName()+".");
+            logger.info("deleting detail with id "+ id + ".");
             this.service.delete(id);
             //todo is this ok?
             return ResponseEntity.noContent().build();

@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 public class Personal extends Detail{
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column
     private String label;

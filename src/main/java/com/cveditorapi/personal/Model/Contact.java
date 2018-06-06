@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Contact extends Detail{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column
     private String label;

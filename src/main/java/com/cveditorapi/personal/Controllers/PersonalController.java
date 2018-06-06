@@ -4,6 +4,7 @@ import com.cveditorapi.personal.Model.Detail;
 import com.cveditorapi.personal.Model.Personal;
 import com.cveditorapi.personal.Services.DetailService;
 import com.cveditorapi.personal.Services.PersonalJPAService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/personal")
+@Api(tags = {"personal cards"})
+
 public class PersonalController extends AbstractDetailController{
 
     @Autowired

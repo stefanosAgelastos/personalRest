@@ -2,6 +2,7 @@ package com.cveditorapi.personal.TokenAuthorization.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,6 +15,7 @@ import com.cveditorapi.personal.TokenAuthorization.JwtTokenUtil;
 import com.cveditorapi.personal.TokenAuthorization.JwtUser;
 
 @RestController
+@Api(tags = {"authenticated user details"})
 public class UserRestController {
 
     @Value("${jwt.header}")
