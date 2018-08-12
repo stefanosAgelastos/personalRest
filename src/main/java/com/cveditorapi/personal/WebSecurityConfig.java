@@ -63,25 +63,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-            // we don't need CSRF because our token is invulnerable
-            .csrf().disable()
+                // we don't need CSRF because our token is invulnerable
+                .csrf().disable()
 
-            .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+
+            .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
 
             // don't create session
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+            .and()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
+            .and()
             .authorizeRequests()
+            // for the CORS problem
+            .antMatchers(HttpMethod.OPTIONS).permitAll()
+            .antMatchers("static/**").permitAll()
 
             // Un-secure H2 Database
-            .antMatchers("/h2-console/**/**").permitAll()
+            .antMatchers("/h2-console/**").permitAll()
+            .antMatchers("/auth/**","/register").permitAll()
+            .antMatchers("/static/**","/assets/**","/homepage/**","/angular/**","/index.html").permitAll()
             //allow pre-flight requests
-            .antMatchers(HttpMethod.OPTIONS).permitAll()
-            .antMatchers("/auth/**").permitAll()
-            .antMatchers("/register").permitAll()
-            .antMatchers("/homepage/**").permitAll()
-            .antMatchers("/static/**").permitAll()
-            .anyRequest().authenticated();
+            .and()
+                .authorizeRequests()
+                .anyRequest()
+                .authenticated();
 
         // Custom JWT based security filter
         JwtAuthorizationTokenFilter authenticationTokenFilter = new JwtAuthorizationTokenFilter(userDetailsService(), jwtTokenUtil, tokenHeader);

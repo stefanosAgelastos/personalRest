@@ -12,10 +12,4 @@ public class PersonalApplication {
 		SpringApplication.run(PersonalApplication.class, args);
 	}
 
-/*	@Bean
-	@ConfigurationProperties(prefix = "spring.datasource")
-	public DataSource dataSource(){
-		return DataSourceBuilder.create().build();
-	}*/
-
 }
