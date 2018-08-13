@@ -18,12 +18,12 @@ public class AngularStaticResourcesHandler implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // All resources go to where they should go
-
         registry
                 .addResourceHandler("/**/*.css", "/**/*.html", "/**/*.js", "/**/*.jsx", "/**/*.png", "/**/*.ttf", "/**/*.woff", "/**/*.woff2")
                 .setCachePeriod(0)
                 .addResourceLocations("classpath:/static/");
 
+        // Resources not found respond with angular's index.html
         registry.addResourceHandler( "/angular/**")
                 .setCachePeriod(0)
                 .addResourceLocations("classpath:/static/index.html")
@@ -34,7 +34,6 @@ public class AngularStaticResourcesHandler implements WebMvcConfigurer {
                         if (!resourcePath.contains(baseSpaPath)) {
                             return null;
                         }
-
                         return location.exists() && location.isReadable() ? location : null;
                     }
                 });

@@ -67,7 +67,7 @@ public abstract class AbstractDetailController {
 
     @GetMapping()
     //todo I nedd to undestand this better and find a better solution
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin/*(origins = "http://localhost:4200")*/
     @PreAuthorize("hasRole('USER')")
     public List<Detail> getAll(HttpServletRequest request) {
         this.request = request;
