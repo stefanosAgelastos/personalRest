@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.UniqueConstraint;
 import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("register")
@@ -32,7 +33,7 @@ public class SignUpController {
     @PostMapping
     @CrossOrigin /*SOOOO fucking important*/
     @ResponseBody
-    public Object registerUser(@RequestBody User newUser){
+    public Object registerUser(@Valid @RequestBody User newUser){
         try{
         this.service.registerUser(newUser);
         return "{\"success\":1}";

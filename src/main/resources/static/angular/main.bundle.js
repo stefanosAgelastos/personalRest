@@ -776,7 +776,7 @@ var DetailService = /** @class */ (function () {
 /***/ "./src/app/modal-detail/modal-detail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Card displaying Personal detail -->\n\n\n<!-- Modal for editing the Personal detail-->\n<div appModal id=\"modal01\" class=\"w3-modal w3-black\" \n              style=\"padding-top: 0px; display: block;\">\n  <span class=\"w3-button w3-black w3-xlarge w3-display-topright\" (click)=\"close(detail)\">×</span>\n  <div class=\"w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64\">\n    <form [formGroup]=\"personalForm\" class=\"w3-container w3-light-grey\">\n      <label>Label</label>\n      <input class=\"w3-input w3-border-0\" type=\"text\" formControlName=\"label\">\n\n      <label>Value</label>\n      <div *ngIf=\"label.required\">\n        error\n      </div>\n      <input class=\"w3-input w3-border-0\" type=\"text\" formControlName=\"value\">\n    </form>\n  </div>\n</div>\n\n"
+module.exports = "<!-- Card displaying Personal detail -->\n\n\n<!-- Modal for editing the Personal detail-->\n<div appModal id=\"modal01\" class=\"w3-modal w3-black\" \n              style=\"padding-top: 0px; display: block;\">\n  <span class=\"w3-button w3-black w3-xlarge w3-display-topright\" (click)=\"close(detail)\">×</span>\n  <div class=\"w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64\">\n    <form [formGroup]=\"personalForm\" class=\"w3-container w3-light-grey\">\n      <label>Label</label>\n      <input class=\"w3-input w3-border-0\" type=\"text\" formControlName=\"label\">\n\n      <label>Value</label>\n      <input class=\"w3-input w3-border-0\" type=\"text\" formControlName=\"value\">\n    </form>\n  </div>\n</div>\n\n"
 
 /***/ }),
 
@@ -944,8 +944,8 @@ export class HighlightDirective {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
 
 
-var personalUrl = "http://54.93.66.2:2300/personal";
-var contactUrl = "http://54.93.66.2:2300/contact";
+var personalUrl = "http://www.stefworks.ml/personal";
+var contactUrl = "http://www.stefworks.ml/contact";
 var personalServiceFactory = function (http) {
     return new __WEBPACK_IMPORTED_MODULE_0__detail_service__["a" /* DetailService */](http, personalUrl);
 };
@@ -989,7 +989,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var UserService = /** @class */ (function () {
     function UserService(http) {
         this.http = http;
-        this.rootUrl = 'http://54.93.66.2:2300';
+        this.rootUrl = 'http://www.stefworks.ml';
     }
     UserService.prototype.registerUser = function (user) {
         var body = {
@@ -1154,8 +1154,11 @@ var SignUpComponent = /** @class */ (function () {
                 _this.resetForm(form);
                 _this.toastr.success('User registration successful');
             }
-            else
-                _this.toastr.error(data.Errors[0]);
+        }, function (error) {
+            //handling this according to the format of the API error response
+            console.log(error);
+            _this.toastr.error(error.error.message);
+            //this.toastr.error(error);
         });
     };
     SignUpComponent = __decorate([
