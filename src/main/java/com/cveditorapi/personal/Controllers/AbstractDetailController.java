@@ -43,6 +43,10 @@ public abstract class AbstractDetailController {
 
     private HttpServletRequest request;
 
+    /*Field for getting false id's for the test driving user*/
+    static int idForDummy = 5;
+
+
     public AbstractDetailController( DetailService service) {
         this.service = service;
     }
@@ -65,43 +69,66 @@ public abstract class AbstractDetailController {
         }
     }
 
+    /*DUMMY ROLE IS FOR TEST DRIVING THE APPLICATION
+    * HANDLE THE REQUEST WITH
+    * NO PERSISTENCE*/
+
+    @PreAuthorize("hasRole('USER') or hasRole('DUMMY')")
     @GetMapping()
     //todo I nedd to undestand this better and find a better solution
     @CrossOrigin/*(origins = "http://localhost:4200")*/
-    @PreAuthorize("hasRole('USER')")
     public List<Detail> getAll(HttpServletRequest request) {
         this.request = request;
         logger.info("getAll method evoked");
         return this.service.getAll(getAuthenticatedUser());
     }
 
+
+    @PreAuthorize("hasRole('USER') or hasRole('DUMMY')")
     @PutMapping
     @CrossOrigin
-    @PreAuthorize("hasRole('USER')")
     public Detail update( HttpServletRequest request, @RequestBody Detail toUpdate) {
         /*convert Detail instance to the right domain type*/
-        this.request = request;
-        toUpdate = typeConvertAndUserAssignment(toUpdate);
-        logger.info("Received for updating: " + toUpdate.toString());
-        return this.service.update(toUpdate);
+            this.request = request;
+            toUpdate = typeConvertAndUserAssignment(toUpdate);
+        if(request.isUserInRole("DUMMY")){
+            logger.info("Received dummy data for updating: " + toUpdate.toString());
+            return toUpdate;
+        } else {
+            logger.info("Received for updating: " + toUpdate.toString());
+            return this.service.update(toUpdate);
+        }
     }
 
+
+    @PreAuthorize("hasRole('USER') or hasRole('DUMMY')")
     @PostMapping
     @CrossOrigin
-    @PreAuthorize("hasRole('USER')")
     public Detail addNew(HttpServletRequest request, @RequestBody Detail toAdd) {
         this.request = request;
         /*convert Detail instance to the right domain type*/
         toAdd = typeConvertAndUserAssignment(toAdd);
+        if(request.isUserInRole("DUMMY")){
+            logger.info("Adding new dummy data: "+toAdd);
+            toAdd.setId(idForDummy++);
+            return toAdd;
+        }
         logger.info("Adding new: "+toAdd);
         return this.service.addNew(toAdd);
     }
 
+
+    @PreAuthorize("hasRole('USER') or hasRole('DUMMY')")
     @DeleteMapping("/{id}")
     @CrossOrigin
     public ResponseEntity<Void> delete(HttpServletRequest request, @PathVariable("id") int id) {
         this.request = request;
         Detail toDelete = this.service.getOne(id);
+
+        if(request.isUserInRole("DUMMY")){
+            logger.info("deleting Dummy data detail with id "+ id + ".");
+            return ResponseEntity.noContent().build();
+        }
         if(toDelete.getUser().equals(this.getAuthenticatedUser())){
             logger.info("deleting detail with id "+ id + ".");
             this.service.delete(id);
@@ -111,10 +138,14 @@ public abstract class AbstractDetailController {
         return ResponseEntity.badRequest().build();
     }
 
+
     public User getAuthenticatedUser() {
         String token = this.request.getHeader(tokenHeader).substring(7);
         String username = jwtTokenUtil.getUsernameFromToken(token);
         User user = userService.findByUserName(username);
         return user;
     }
+
+
+
 }
