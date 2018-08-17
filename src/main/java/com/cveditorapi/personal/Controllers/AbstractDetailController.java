@@ -70,12 +70,13 @@ public abstract class AbstractDetailController {
     }
 
     /*DUMMY ROLE IS FOR TEST DRIVING THE APPLICATION
-    * HANDLE THE REQUEST WITH
+    * HANDLES THE REQUEST WITH
     * NO PERSISTENCE*/
 
     @PreAuthorize("hasRole('USER') or hasRole('DUMMY')")
     @GetMapping()
-    //todo I nedd to undestand this better and find a better solution
+    //todo I ned
+    // d to undestand this better and find a better solution
     @CrossOrigin/*(origins = "http://localhost:4200")*/
     public List<Detail> getAll(HttpServletRequest request) {
         this.request = request;

@@ -220,7 +220,7 @@ var AppDetailComponent = /** @class */ (function () {
 /***/ "./src/app/app-navbar/app-navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Sidebar/menu -->\n<nav class=\"w3-sidebar w3-bar-block w3-white w3-animate-left w3-text-grey w3-collapse w3-top w3-center\" style=\"z-index: 3; width: 300px; font-weight: bold; display: none;\"\n  id=\"mySidebar\">\n  <br>\n  <h3 class=\"w3-padding-64 w3-center\">\n    <img src=\"../assets/img/appLogo.png\" height=\"80\" width=\"80\" />\n    <!-- Todo, put sizing in css for both img -->\n  </h3>\n  <a href=\"javascript:void(0)\" onclick=\"w3_close()\" class=\"w3-bar-item w3-button w3-padding w3-hide-large\">CLOSE</a>\n  <ng-container *ngIf=\"logedIn\">\n    <a routerLink=\"personal\" onclick=\"w3_close()\" class=\"w3-bar-item w3-button\">PERSONAL</a>\n    <a routerLink=\"contact\" onclick=\"w3_close()\" class=\"w3-bar-item w3-button\">CONTACT</a>\n    <a routerLink=\"work\" onclick=\"w3_close()\" class=\"w3-bar-item w3-button\">FEATURE</a>\n    <a routerLink=\"logout\" onclick=\"w3_close()\" class=\"w3-bar-item w3-button w3-text-red\" (click)=\"Logout()\">LOGOUT</a>\n  </ng-container>\n  <ng-container *ngIf=\"!logedIn\">\n    <a routerLink='login' onclick=\"w3_close()\" class=\"w3-bar-item w3-button\">SIGN IN</a>\n    <a routerLink='signup' routerLinkActive='active' onclick=\"w3_close()\" class=\"w3-bar-item w3-button\">SIGN UP</a>\n    <a onclick=\"w3_close()\" class=\"w3-bar-item w3-button\" (click)=\"TestDrive()\">\n      <img src=\"..\\assets\\img\\drive.png\" style=\"max-width:50%;\" alt=\"Test drive app\"> \n    </a>\n    <a href=\"www.stefworks.ml\" onclick=\"w3_close()\" class=\"w3-bar-item w3-button\">STEFWORKS.ML</a>\n  </ng-container>\n</nav>\n\n<!-- Top menu on small screens -->\n<header class=\"w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16\">\n  <span class=\"w3-left w3-padding\">\n    <img src=\"../assets/img/appLogo.png\" height=\"70\" width=\"70\" /> </span>\n  <a href=\"javascript:void(0)\" class=\"w3-right w3-button w3-white\" onclick=\"w3_open()\">☰</a>\n</header>\n\n<!-- Overlay effect when opening sidebar on small screens -->\n<div class=\"w3-overlay w3-hide-large w3-animate-opacity\" onclick=\"w3_close()\" style=\"cursor: pointer; display: none;\" title=\"close side menu\"\n  id=\"myOverlay\"></div>"
+module.exports = "<!-- Sidebar/menu -->\n<nav class=\"w3-sidebar w3-bar-block w3-white w3-animate-left w3-text-grey w3-collapse w3-top w3-center\" style=\"z-index: 3; width: 300px; font-weight: bold; display: none;\"\n  id=\"mySidebar\">\n  <br>\n  <h3 class=\"w3-padding-64 w3-center\">\n    <img src=\"../assets/img/appLogo.png\" height=\"80\" width=\"80\" />\n    <!-- Todo, put sizing in css for both img -->\n  </h3>\n  <a href=\"javascript:void(0)\" onclick=\"w3_close()\" class=\"w3-bar-item w3-button w3-padding w3-hide-large\">CLOSE</a>\n  <ng-container *ngIf=\"logedIn\">\n    <a routerLink=\"personal\" onclick=\"w3_close()\" class=\"w3-bar-item w3-button\">PERSONAL</a>\n    <a routerLink=\"contact\" onclick=\"w3_close()\" class=\"w3-bar-item w3-button\">CONTACT</a>\n    <a routerLink=\"work\" onclick=\"w3_close()\" class=\"w3-bar-item w3-button\">FEATURE</a>\n    <a routerLink=\"logout\" onclick=\"w3_close()\" class=\"w3-bar-item w3-button w3-text-red\" (click)=\"Logout()\">LOGOUT</a>\n  </ng-container>\n  <ng-container *ngIf=\"!logedIn\">\n    <a routerLink='login' onclick=\"w3_close()\" class=\"w3-bar-item w3-button\">SIGN IN</a>\n    <a routerLink='signup' routerLinkActive='active' onclick=\"w3_close()\" class=\"w3-bar-item w3-button\">SIGN UP</a>\n    <a onclick=\"w3_close()\" class=\"w3-bar-item w3-button\" (click)=\"TestDrive()\">\n      <img src=\"..\\assets\\img\\drive.png\" style=\"max-width:50%;\" alt=\"Test drive app\"> \n    </a>\n    <a href=\"http://www.stefworks.ml\" onclick=\"w3_close()\" class=\"w3-bar-item w3-button\">STEFWORKS.ML</a>\n  </ng-container>\n</nav>\n\n<!-- Top menu on small screens -->\n<header class=\"w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16\">\n  <span class=\"w3-left w3-padding\">\n    <img src=\"../assets/img/appLogo.png\" height=\"70\" width=\"70\" /> </span>\n  <a href=\"javascript:void(0)\" class=\"w3-right w3-button w3-white\" onclick=\"w3_open()\">☰</a>\n</header>\n\n<!-- Overlay effect when opening sidebar on small screens -->\n<div class=\"w3-overlay w3-hide-large w3-animate-opacity\" onclick=\"w3_close()\" style=\"cursor: pointer; display: none;\" title=\"close side menu\"\n  id=\"myOverlay\"></div>"
 
 /***/ }),
 
@@ -956,8 +956,8 @@ export class HighlightDirective {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
 
 
-var personalUrl = "http://localhost:2300/personal";
-var contactUrl = "http://localhost:2300/contact";
+var personalUrl = "http://127.0.0.1:2300/personal";
+var contactUrl = "http://127.0.0.1:2300/contact";
 var personalServiceFactory = function (http) {
     return new __WEBPACK_IMPORTED_MODULE_0__detail_service__["a" /* DetailService */](http, personalUrl);
 };
@@ -1001,7 +1001,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var UserService = /** @class */ (function () {
     function UserService(http) {
         this.http = http;
-        this.rootUrl = 'http://localhost:2300';
+        this.rootUrl = 'http://127.0.0.1:2300';
     }
     UserService.prototype.registerUser = function (user) {
         var body = {

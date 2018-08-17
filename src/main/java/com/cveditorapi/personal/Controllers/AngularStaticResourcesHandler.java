@@ -23,7 +23,7 @@ public class AngularStaticResourcesHandler implements WebMvcConfigurer {
                 .setCachePeriod(0)
                 .addResourceLocations("classpath:/static/");
 
-        // Resources not found respond with angular's index.html
+        // Resources not found? respond with angular's index.html
         registry.addResourceHandler( "/angular/**")
                 .setCachePeriod(0)
                 .addResourceLocations("classpath:/static/index.html")
