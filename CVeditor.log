@@ -138,3 +138,11 @@
 2018-08-17 15:09:47.098  INFO 17048 --- [http-nio-2300-exec-1] c.c.p.Controllers.PersonalController     : getAll method evoked
 2018-08-17 15:09:47.234  WARN 17048 --- [http-nio-2300-exec-2] c.c.p.T.JwtAuthorizationTokenFilter      : couldn't find bearer string, will ignore the header
 2018-08-17 15:09:51.886  WARN 17048 --- [http-nio-2300-exec-3] c.c.p.T.JwtAuthorizationTokenFilter      : couldn't find bearer string, will ignore the header
+2018-08-17 15:14:19.988  WARN 17048 --- [http-nio-2300-exec-1] c.c.p.T.JwtAuthorizationTokenFilter      : couldn't find bearer string, will ignore the header
+2018-08-17 15:14:20.642  WARN 17048 --- [http-nio-2300-exec-3] c.c.p.T.JwtAuthorizationTokenFilter      : couldn't find bearer string, will ignore the header
+2018-08-17 15:14:20.795  INFO 17048 --- [http-nio-2300-exec-7] c.c.p.T.JwtAuthorizationTokenFilter      : authorizated user 'sa', setting security context
+2018-08-17 15:14:20.819  INFO 17048 --- [http-nio-2300-exec-7] c.c.p.Controllers.ControllerAspect       : :::::AOP Before REST call:::::execution(List com.cveditorapi.personal.Controllers.AbstractDetailController.getAll(HttpServletRequest))
+2018-08-17 15:14:20.825  INFO 17048 --- [http-nio-2300-exec-7] c.c.p.Controllers.PersonalController     : getAll method evoked
+2018-08-17 15:16:09.842  INFO 17048 --- [http-nio-2300-exec-10] c.c.p.T.JwtAuthorizationTokenFilter      : authorizated user 'sas', setting security context
+2018-08-17 15:16:09.846  INFO 17048 --- [http-nio-2300-exec-10] c.c.p.Controllers.ControllerAspect       : :::::AOP Before REST call:::::execution(List com.cveditorapi.personal.Controllers.AbstractDetailController.getAll(HttpServletRequest))
+2018-08-17 15:16:09.884  INFO 17048 --- [http-nio-2300-exec-10] c.c.p.Controllers.PersonalController     : getAll method evoked

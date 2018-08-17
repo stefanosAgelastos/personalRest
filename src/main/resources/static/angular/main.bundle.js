@@ -956,8 +956,8 @@ export class HighlightDirective {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
 
 
-var personalUrl = "http://127.0.0.1:2300/personal";
-var contactUrl = "http://127.0.0.1:2300/contact";
+var personalUrl = "http://www.stefworks.ml:2300/personal";
+var contactUrl = "http://www.stefworks.ml:2300/contact";
 var personalServiceFactory = function (http) {
     return new __WEBPACK_IMPORTED_MODULE_0__detail_service__["a" /* DetailService */](http, personalUrl);
 };
@@ -1001,7 +1001,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var UserService = /** @class */ (function () {
     function UserService(http) {
         this.http = http;
-        this.rootUrl = 'http://127.0.0.1:2300';
+        this.rootUrl = 'http://www.stefworks.ml:2300';
     }
     UserService.prototype.registerUser = function (user) {
         var body = {
