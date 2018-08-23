@@ -146,3 +146,4 @@
 2018-08-17 15:16:09.842  INFO 17048 --- [http-nio-2300-exec-10] c.c.p.T.JwtAuthorizationTokenFilter      : authorizated user 'sas', setting security context
 2018-08-17 15:16:09.846  INFO 17048 --- [http-nio-2300-exec-10] c.c.p.Controllers.ControllerAspect       : :::::AOP Before REST call:::::execution(List com.cveditorapi.personal.Controllers.AbstractDetailController.getAll(HttpServletRequest))
 2018-08-17 15:16:09.884  INFO 17048 --- [http-nio-2300-exec-10] c.c.p.Controllers.PersonalController     : getAll method evoked
+2018-08-17 15:49:14.541  WARN 17048 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=11m53s245ms944µs200ns).
