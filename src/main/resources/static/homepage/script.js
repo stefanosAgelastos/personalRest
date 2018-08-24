@@ -1,12 +1,15 @@
 $(function () {
 
 
+    showPreloader();
+
     /*-------------------------------------------
     Load Page
     ---------------------------------------------*/
 
     $('body').waitForImages({
         finished: function () {
+            console.log("waitForImages method finished");
             Website();
             $('body').jKit();
         },
@@ -18,6 +21,7 @@ $(function () {
     ---------------------------------------------*/
 
     $("a.scroll-link").live("click", function () {
+        console.log("scroll link page transitions method");
         $this = $(this);
         var link = $this.attr('href');
         var current_url = $(location).attr('href');
@@ -45,6 +49,8 @@ $(function () {
     ---------------------------------------------*/
 
     $("a.ajax-link").live("click", function () {
+        console.log("Ajax link page transitions method");
+
         $this = $(this);
         var link = $this.attr('href');
         var current_url = $(location).attr('href');
@@ -91,6 +97,8 @@ $(function () {
 
 
     function backLoading() {
+        console.log("backLoading() method");
+
         $(window).on("popstate", function () {
             $('body').fadeOut('slow', function () {
                 location.reload();
@@ -104,6 +112,8 @@ $(function () {
     ---------------------------------------------*/
 
     function Website() {
+        console.log("Website() method");
+
         CheckScripts();
         Masonry();
         $('body').jKit();
@@ -122,7 +132,7 @@ $(function () {
     ---------------------------------------------*/
 
     function CheckScripts() {
-
+        console.log("checkScripts() method");
         $(document).ready(function () {
             preloaderCheck();
             Typewriting();
@@ -137,6 +147,7 @@ $(function () {
     ---------------------------------------------*/
 
     function Masonry() {
+        console.log("Masonry() method");
         var $container = $('.portfolio-grid');
 
         $container.imagesLoaded(function () {
@@ -152,7 +163,7 @@ $(function () {
     ---------------------------------------------*/
 
     function backgroundmenu() {
-
+        console.log("backgroundmenu() method");
         $(document).ready(function () {
             if ($("#header-fade").length) {
 
@@ -188,7 +199,7 @@ $(function () {
     ---------------------------------------------*/
 
     function Typewriting() {
-
+        console.log("Typewriting() method");
 
         $(document).ready(function () {
             setTimeout(function () {
@@ -213,7 +224,7 @@ $(function () {
     ---------------------------------------------*/
 
     function sidebarhero() {
-
+        console.log("sidebarhero() method");
         if ($("#hero").length) {
             var fadeStart = 100, fadeUntil = 800, fading = $('#hero');
 
@@ -237,6 +248,7 @@ $(function () {
     ---------------------------------------------*/
 
     function OpenCheck() {
+        console.log("OpenCheck() method");
         setTimeout(function () {
             hidePreloader();
         }, 1000);
@@ -248,6 +260,7 @@ $(function () {
     ---------------------------------------------*/
 
     function preloaderCheck() {
+        console.log("preloaderCheck() method");
         showPreloader();
         $(window).load(function () {
             hidePreloader();
@@ -259,10 +272,12 @@ $(function () {
     ---------------------------------------------*/
 
     function showPreloader() {
+        console.log("showPreloader() method");
         $(".preloader").fadeIn("slow");
     }
 
     function hidePreloader() {
+        console.log("hidePreloader() method");
         $(".preloader").delay(2000).fadeOut("slow");
     }
 
