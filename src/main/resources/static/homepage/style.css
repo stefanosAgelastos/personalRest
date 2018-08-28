@@ -72,6 +72,7 @@ PRELOADER
 
 img {
     width:  500px;
+    filter: drop-shadow(2px 2px 2px gray);
     
 }
 .spinner {
