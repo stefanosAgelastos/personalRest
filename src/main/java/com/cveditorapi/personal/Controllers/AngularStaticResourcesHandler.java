@@ -13,7 +13,7 @@ import java.io.IOException;
 @EnableAutoConfiguration
 public class AngularStaticResourcesHandler implements WebMvcConfigurer {
 
-    private final String baseSpaPath = "angular";
+    private final String baseSpaPath = "";
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -24,7 +24,7 @@ public class AngularStaticResourcesHandler implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/");
 
         // Resources not found? respond with angular's index.html
-        registry.addResourceHandler( "/angular/**")
+        registry.addResourceHandler( "/**")
                 .setCachePeriod(0)
                 .addResourceLocations("classpath:/static/index.html")
                 .resourceChain(true)
