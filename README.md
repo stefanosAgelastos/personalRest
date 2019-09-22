@@ -47,16 +47,16 @@ This is a REST API, made using the Spring Boot 2.0 framework. This project was c
 
 <Panel id="2" heading="What for?" secondaryHeading="About the functionality" >  
   
-## Main features
+### Main features
 The REST server provides endpoints for authentication (signin & signup) with JWT tokens. It also provides a secure Rest API to authorised users, for two different types of resources. I am especially proud of using inheritance in order to provide abstract controller and persistence logic for both resources. The implementation happens on runtime depending on the endpoint.
 </Panel>
 
 <Panel id="3" heading="For Devs" secondaryHeading="How to deploy" >
 
-## Custom deployment plan
+### Custom deployment plan
 Part of the exam project has been setting up a CI/CD pipeline. At the moment the project is not deployed and the repository is not being maintained. Below there's a short description of my original setup. The idea is to get Jenkins and TomCat running on an EC2 instance on the AWS cloud. 
 
-## Setting up the EC2 
+### Setting up the EC2 
 - Launch an EC2 instance in an aws VPC
 - Configure security group with ports 22 (for ssh), 8088 (for Jenkins) and 8080(for tomcat) exposed to public access.
 - SSH into your instance, and update packages
