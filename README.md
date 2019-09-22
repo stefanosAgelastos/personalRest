@@ -3,6 +3,7 @@
 <HeaderTitle>
   
 # Java REST API 
+
 <TitleAction href="https://github.com/stefanosAgelastos/personalRest" label="Go to github repo" />
 </HeaderTitle>
 
@@ -13,7 +14,7 @@
   
 ## Description
 
-This is a REST API, made with the Spring Boot framework.
+This is a REST API, made using the Spring Boot 2.0 framework. This project was coded as an exam project for 5th semester's **elective course: Spring Boot and DevOps**. For this project I got an excellent evaluation during the exam.
 
 </InfoPaper>
 
@@ -21,11 +22,12 @@ This is a REST API, made with the Spring Boot framework.
 <MyChip label="Back-end Development"/>
 <MyChip label="Java"/>
 <MyChip label="Spring Boot 2.0"/>
+<MyChip label="Spring Boot REST"/>
+<MyChip label="Spring Boot CLOUD"/>
+<MyChip label="JWT authorization"/>
 <MyChip label="Rest"/>
 <MyChip label="Hibernate"/>
-<MyChip label="Spring"/>
-<MyChip label="Rest"/>
-<MyChip label="Hibernate"/>
+<MyChip label="Maven build tool"/>
 </InfoPaper>
 
 </InfoGrid>
@@ -34,94 +36,39 @@ This is a REST API, made with the Spring Boot framework.
 <Panel id="1" heading="What?" secondaryHeading="About the technologies I used" >
 
 ### The Stack:
-- Javascript
-- React 16.9
-- axios
-- Jest
-- Enzyme
-- react-router-dom
+- Java
+- Spring Boot 2.0
+- Hibernate
+- H2 embedded database
+- Hibernate Object-Relational mapping tool
+- Actuator for monitoring and app metrics
+- Maven as a build tool
 </Panel>
 
-<Panel id="2" heading="For Devs" secondaryHeading="About the project structure" >
+<Panel id="2" heading="What for?" secondaryHeading="About the functionality" >
 
-### In /src
-
-You will find, the application starting point `index.js`, the root component `App.js` and the default `App.test.js`, the enzyme configuration file `setupTests.js` and the main styling sheet `index.css`.
-
-### in /src/util
-
-You will find `auth.context.js` that declares and exports the default state of the autorization Context. 
-**Note** `auth.service.js` provides all the async methods for the authorization api, the methods return a promise that throws custom errors for requests status different than 200.
-
-### in /src/components
-
-You will find all the view rendering components of the application. 
-
-### in /src/assets
-
-You will find static assets like fonts and icons.
-
+The REST server provides endpoints for authentication (signin & signup) with JWT tokens. It also provides a secure Rest API to authorised users, for two different types of resources. I am especially proud of using inheritance in order to provide abstract controller and persistence logic for both resources. The implementation happens on runtime depending on the endpoint.
 </Panel>
 
-<Panel id="3" heading="For Devs" secondaryHeading="Clone and install" >
+<Panel id="3" heading="For Devs" secondaryHeading="How to deploy" >
 
-## How to use
+## Custom deployment plan
+Part of the exam project has been setting up a CI/CD pipeline. At the moment the project is not deployed and the repository is not being maintained. Below there's a short description of my original setup. The idea is to get Jenkins and TomCat running on an EC2 instance on the AWS cloud.
+- Launch an EC2 instance in an aws VPC
+- Configure security group with ports 22 (for ssh), 8088 (for Jenkins) and 8080(for tomcat) exposed to public access.
+- SSH into your instance, and update packages
+- Bring Jenkins repo and import a key file from Jenkins-CI to enable installation
+- Install Jenkins and change ` /etc/sysconfig/jenkins` default port to 8088 and run Jenkins
+- On your EC2's `http://<my-server-public-DNS>:8088` there's a Jenkins build server listening, you can see the GUI now.
+- Login to Jenkins with the key you find at `/var/lib/jenkins/secrets/initialAdminPassword`
+- From the GUI you can now download and install plugins related to the project like `Maven Intefration Plugin` and `Capitomcat Plugin`
+- Install tomcat packages through SSH: `tomcat8-webapps`, `tomcat8-docs-webapp` and `tomcat8-admin-webapps`
+- Add Jenkins as a user to tomcat: edit `/usr/share/tomcat8/conf/tomcat-users.xml` and add users `<user username="tomcat" password="tomcat" roles="manager-gui"/>` and `<user username="jenkins" password="jenkins" roles="manager-script, manager-gui, admin, admin-gui, admin-script, manager" />`
+- There has been a change of the defalt settings in tomcat8, so you need to change `/var/lib/tomcat8/webapps/manager/META-INF/context.xml` and UNCOMMENT the vavle
+- Now you can also access `http://<my-server-public-DNS>:8080/manager/html` and configure tomcat through the GUI
+- Then you can follow the tutorial [here](https://www.tutorialspoint.com/jenkins/index.htm) in order to setup your first CI/CD job
 
-**Note : npm6** is required to install dependencies properly.
-**Note : Node Server** must be up and running on your local machine.
-Download or clone the repo
-
-```sh
-git clone repo-url-here
-cd client
-```
-
-Install it and run:
-
-```sh
-npm install
-npm start
-```  
-
-</Panel>
-
-<Panel id="4" heading="For Devs" secondaryHeading="NPM scripts" >
-
-## Available Commands From Create React App
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](#running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](#deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
+My approach was to setup a new job on Jenkins that would be triggered every time there's a new push to my github repository.
 
 </Panel>
 
