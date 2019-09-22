@@ -45,7 +45,7 @@ This is a REST API, made using the Spring Boot 2.0 framework. This project was c
 - Maven as a build tool
 </Panel>
 
-<Panel id="2" heading="What for?" secondaryHeading="About the functionality">
+<Panel id="2" heading="What for?" secondaryHeading="About the functionality" >
 
 ### Main features:
 
