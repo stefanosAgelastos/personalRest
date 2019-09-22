@@ -48,7 +48,7 @@ This is a REST API, made using the Spring Boot 2.0 framework. This project was c
 <Panel id="2" heading="What for?" secondaryHeading="About the functionality" >  
   
 ### Main features: 
-
+  
 The REST server provides endpoints for authentication (signin & signup) with JWT tokens. It also provides a secure Rest API to authorised users, for two different types of resources. I am especially proud of using inheritance in order to provide abstract controller and persistence logic for both resources. The implementation happens on runtime depending on the endpoint.
 </Panel>
 
