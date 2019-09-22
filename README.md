@@ -14,7 +14,7 @@
   
 ## Description
 
-This is a REST API, made using the Spring Boot 2.0 framework. This project was coded as an exam project for 5th semester's **elective course: Spring Boot and DevOps**. For this project I got an excellent evaluation during the exam.
+This is a REST API, made using the Spring Boot 2.0 framework. This project was coded as an exam project for 5th semester's **(Spring 2018) elective course: Spring Boot and DevOps**. For this project I got an excellent evaluation during the exam.
 
 </InfoPaper>
 
