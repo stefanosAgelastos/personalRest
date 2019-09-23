@@ -58,7 +58,7 @@ The REST server provides endpoints for authentication (signin & signup) with JWT
 
 <Panel id="3" heading="For Devs" secondaryHeading="How to deploy" >
 
-### Custom deployment plan
+## Custom deployment plan
 Part of the exam project was to set up a CI/CD pipeline. Below there's a short description of my original setup. The idea is to get Jenkins and TomCat running on an EC2 instance on the AWS cloud, and then configure automatic builds every time there's a new push to the remote repository. <br/>
 **At the moment the project is not deployed and the repository is not being maintained.**
 
