@@ -14,7 +14,7 @@
   
 ## Description
 
-This is a REST API, made using the Spring Boot 2.0 framework. This project was coded as an exam project for 5th semester's **(Spring 2018) elective course: Spring Boot and DevOps**. For this project I got an excellent evaluation during the exam.
+This is a REST API, powered by the Spring Boot 2.0 framework. The application was coded as an exam project for 5th semester's **(Spring 2018) elective course: Spring Boot and DevOps** at KEA. I presented and defended the application and deployment plan during an oral exam, for which I got an excellent evaluation.
 
 </InfoPaper>
 
@@ -27,7 +27,9 @@ This is a REST API, made using the Spring Boot 2.0 framework. This project was c
 <MyChip label="JWT authorization"/>
 <MyChip label="Rest"/>
 <MyChip label="Hibernate"/>
-<MyChip label="Maven build tool"/>
+<MyChip label="Maven"/>
+<MyChip label="Jenkins"/>
+<MyChip label="AWS"/>
 </InfoPaper>
 
 </InfoGrid>
@@ -43,19 +45,22 @@ This is a REST API, made using the Spring Boot 2.0 framework. This project was c
 - Hibernate Object-Relational mapping tool
 - Actuator for monitoring and app metrics
 - Maven as a build tool
+- AWS cloud
+- Jenkins automation server
 </Panel>
 
 <Panel id="2" heading="What for?" secondaryHeading="About the functionality" >
 
 ### Main features:
 
-The REST server provides endpoints for authentication (signin & signup) with JWT tokens. It also provides a secure Rest API to authorised users, for two different types of resources. I am especially proud of using inheritance in order to provide abstract controller and persistence logic for both resources. The implementation happens on runtime depending on the endpoint.
+The REST server provides endpoints for authentication (signin & signup) with JWT tokens. It also provides a secure Rest API to authorised users, for access two different types of resources. I am especially proud of using inheritance in order to provide abstract controller and persistence logic for both resources. The implementation happens on runtime depending on the endpoint.
 </Panel>
 
 <Panel id="3" heading="For Devs" secondaryHeading="How to deploy" >
 
 ### Custom deployment plan
-Part of the exam project has been setting up a CI/CD pipeline. At the moment the project is not deployed and the repository is not being maintained. Below there's a short description of my original setup. The idea is to get Jenkins and TomCat running on an EC2 instance on the AWS cloud. 
+Part of the exam project was to set up a CI/CD pipeline. Below there's a short description of my original setup. The idea is to get Jenkins and TomCat running on an EC2 instance on the AWS cloud, and then configure automatic builds every time there's a new push to the remote repository. <br/>
+**At the moment the project is not deployed and the repository is not being maintained.**
 
 ### Setting up the EC2 
 - Launch an EC2 instance in an aws VPC
@@ -72,7 +77,8 @@ Part of the exam project has been setting up a CI/CD pipeline. At the moment the
 - Now you can also access `http://<my-server-public-DNS>:8080/manager/html` and configure tomcat through the GUI
 - Then you can follow the tutorial [here](https://www.tutorialspoint.com/jenkins/index.htm) in order to setup your first CI/CD job
 
-My approach has been to setup a new job on Jenkins that would be triggered every time there's a new push to my github repository.
+### Further configuration
+Once you have access to the GUI of Jenkins, one can manually configure a new build Job. My approach has been to setup a new job on Jenkins that would trigger a Maven build every time there's a new push to my github repository. For this, one has to configure the Java version to be used by Maven, and also setup webhooks on the github side in order to inform Jenkins whenever there's a new push.
 
 </Panel>
 
