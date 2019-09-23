@@ -14,7 +14,7 @@
   
 ## Description
 
-This is a REST API, powered by the Spring Boot 2.0 framework. The application was coded as an exam project for 4th semester's **(Spring 2018) elective course: Spring Boot and DevOps** at KEA. I presented and defended the application and deployment plan during an oral exam, for which I got an excellent evaluation.
+This is a REST API, powered by the Spring Boot 2.0 framework. The application was coded as an exam project for 4th semester's **(Spring 2018) elective course: Spring Boot and DevOps** at KEA. I presented and defended the application and continuous deployment setup during an oral exam, for which I got an excellent evaluation.
 
 </InfoPaper>
 
